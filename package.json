@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite --open",
     "build": "vue-tsc && vite build",
+    "build:test": "vue-tsc && vite build --mode test",
+    "build:pro": "vue-tsc && vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint src",
     "fix": "eslint src --fix",
@@ -16,6 +18,8 @@
     "commitlint": "commitlint --config commitlint.config.cjs -e -V"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "element-plus": "^2.11.3",
     "vue": "^3.5.21"
   },
   "devDependencies": {
