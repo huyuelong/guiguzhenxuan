@@ -26,41 +26,41 @@
 //   },
 // ]);
 
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
-import pluginVue from "eslint-plugin-vue";
-import css from "@eslint/css";
-import { defineConfig } from "eslint/config";
+import js from '@eslint/js';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+import pluginVue from 'eslint-plugin-vue';
+import css from '@eslint/css';
+import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
   // JS / TS / Vue
   {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"],
+    files: ['**/*.{js,mjs,cjs,ts,mts,cts,vue}'],
     plugins: { js },
-    extends: ["js/recommended"],
+    extends: ['js/recommended'],
     languageOptions: {
       globals: globals.browser,
       parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
+        ecmaVersion: 'latest',
+        sourceType: 'module',
       },
     },
     rules: {
       // ESLint
-      "no-var": "error",
-      "no-multiple-empty-lines": ["warn", { max: 1 }], // 不允许多个空行
+      'no-var': 'error',
+      'no-multiple-empty-lines': ['warn', { max: 1 }], // 不允许多个空行
       // "no-console": import.meta.env.NODE_ENV === "production" ? "error" : "off",
       // "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-      "no-unexpected-multiline": "error", // 禁止空余的多行
-      "no-useless-escape": "off", // 禁用不必要的转义字符
+      'no-unexpected-multiline': 'error', // 禁止空余的多行
+      'no-useless-escape': 'off', // 禁用不必要的转义字符
     },
   },
 
   // TypeScript
   tseslint.configs.recommended,
   {
-    files: ["**/*.{ts,tsx,vue}"],
+    files: ['**/*.{ts,tsx,vue}'],
     languageOptions: {
       parser: tseslint.parser,
     },
@@ -75,9 +75,9 @@ export default defineConfig([
   },
 
   // Vue
-  pluginVue.configs["flat/essential"],
+  pluginVue.configs['flat/essential'],
   {
-    files: ["**/*.vue"],
+    files: ['**/*.vue'],
     languageOptions: {
       parserOptions: {
         parser: tseslint.parser,
@@ -93,9 +93,9 @@ export default defineConfig([
 
   // CSS
   {
-    files: ["**/*.css"],
+    files: ['**/*.css'],
     plugins: { css },
-    language: "css/css",
-    extends: ["css/recommended"],
+    language: 'css/css',
+    extends: ['css/recommended'],
   },
 ]);

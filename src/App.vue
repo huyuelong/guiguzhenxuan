@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/SvgIcon/index.vue';
-
 </script>
 
 <template>
@@ -16,7 +15,7 @@ import SvgIcon from '@/components/SvgIcon/index.vue';
 <style scoped lang="scss">
 div {
   h1 {
-    color: $color;
+    color: red;
   }
 }
 </style>
