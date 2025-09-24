@@ -14,7 +14,7 @@
                             placeholder="请输入密码"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button class="login_btn" type="primary">登录</el-button>
+                        <el-button :loading="loading" class="login_btn" type="primary" @click="login">登录</el-button>
                     </el-form-item>
                 </el-form>
             </el-col>
@@ -23,13 +23,40 @@
 </template>
 
 <script setup lang="ts">
-import { User, Lock } from '@element-plus/icons-vue';
+import { User, Lock, Loading } from '@element-plus/icons-vue';
 import { ref } from 'vue';
+import useUserStore from '@/store/modules/user';
+import { useRouter } from 'vue-router';
+import { ElNotification } from 'element-plus';
+
+const userStore = useUserStore();
+const router = useRouter();
+
+const loading = ref(false)
 
 const loginForm = ref({
     username: 'admin',
     password: '111111',
 });
+
+const login = async () => {
+    loading.value = true;
+    try {
+        await userStore.userLogin(loginForm.value);
+        router.push('/');
+        ElNotification.success({
+            title: '登录成功',
+            message: '欢迎来到硅谷甄选',
+        });
+        loading.value = false;
+    } catch (error) {
+        loading.value = false;
+        ElNotification.error({
+            title: '登录失败',
+            message: (error as Error).message,
+        });
+    }
+}
 </script>
 
 <style scoped lang="scss">
