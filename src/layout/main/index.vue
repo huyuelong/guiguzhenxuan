@@ -1,14 +1,27 @@
 <template>
   <RouterView v-slot="{ Component }">
     <transition name="fade-slide" mode="out-in">
-      <component :is="Component" />
+      <component :is="Component" v-if="flag"> </component>
     </transition>
   </RouterView>
 </template>
 
 <script setup lang="ts">
+import useLayoutSettingStore from '@/store/modules/setting';
+import { ref, watch, nextTick } from 'vue';
+
 defineOptions({
     name: 'Main'
+})
+
+const layoutSettingStore = useLayoutSettingStore();
+const flag = ref(true);
+
+watch(() => layoutSettingStore.refresh, () => {
+    flag.value = false;
+    nextTick(() => {
+        flag.value = true;
+    });
 })
 </script>
 

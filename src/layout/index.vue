@@ -7,7 +7,7 @@
             <!-- 滚动组件 -->
             <el-scrollbar class="scrollbar">
                 <!-- 菜单组件 -->
-                <el-menu :default-active="route.path" background-color="$base-menu-background" text-color="white"
+                <el-menu :default-active="route.path" background-color="#001529" text-color="white"
                     active-text-color="yellowgreen" :collapse="isCollapse" collapse-transition>
                     <Menu :menuList="userStore.menuRoutes" />
                 </el-menu>
@@ -55,7 +55,7 @@ const isCollapse = computed(() => layoutSettingStore.fold);
         width: $base-menu-width;
         height: 100vh;
         background-color: $base-menu-background;
-        float: left;
+        // float: left;
         transition: all 0.3s ease;
 
         .scrollbar {
@@ -92,7 +92,7 @@ const isCollapse = computed(() => layoutSettingStore.fold);
         height: calc(100vh - $base-tabbar-height);
         top: $base-tabbar-height;
         left: $base-menu-width;
-        background-color: green;
+        // background-color: green;
         padding: 20px;
         overflow: auto;
         transition: all 0.3s ease;
