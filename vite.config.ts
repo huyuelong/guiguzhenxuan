@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { viteMockServe } from 'vite-plugin-mock';
+import vueDevTools from 'vite-plugin-vue-devtools';
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => {
@@ -18,6 +19,7 @@ export default defineConfig(({ command }) => {
       viteMockServe({
         enable: command === 'serve',
       }),
+      vueDevTools(),
     ],
     resolve: {
       alias: {

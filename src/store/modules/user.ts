@@ -3,9 +3,12 @@ import { reqLogin } from "@/apis/user";
 import { ref } from "vue";
 import type { loginFormData, loginResponseData } from "@/apis/user/type";
 import { GET_TOKEN, SET_TOKEN } from "@/utils/token";
+import { constantRoutes } from "@/router/routes";
+import type { RouteRecordRaw } from "vue-router";
 
 const useUserStore = defineStore("user", () => {
     const token = ref<string>(GET_TOKEN() || "")
+    const menuRoutes = ref<RouteRecordRaw[]>(constantRoutes)
 
     const userLogin = async (data: loginFormData) => {
         // const res = await reqLogin(data);
@@ -26,6 +29,7 @@ const useUserStore = defineStore("user", () => {
 
     return {
         token,
+        menuRoutes,
         userLogin,
     };
 });
