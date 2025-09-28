@@ -32,7 +32,7 @@ router.beforeEach(async (to, from, next) => {
                     await userStore.userInfo();
                     next();
                 } catch (error) {
-                    userStore.userLogout();
+                    await userStore.userLogout();
                     next(`/login?redirect=${to.path}`);
                 }
             }

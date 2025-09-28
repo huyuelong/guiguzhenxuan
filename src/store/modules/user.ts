@@ -26,7 +26,7 @@ const useUserStore = defineStore("user", () => {
             SET_TOKEN(token.value);
             return "ok";
         } else {
-            return Promise.reject(new Error(res.data));
+            return Promise.reject(new Error(res.message));
         }
     };
 
