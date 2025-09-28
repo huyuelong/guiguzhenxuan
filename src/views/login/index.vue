@@ -29,10 +29,12 @@ import useUserStore from '@/store/modules/user';
 import { useRouter } from 'vue-router';
 import { ElNotification } from 'element-plus';
 import { getTime } from '@/utils/time';
+import { useRoute } from 'vue-router';
 
 const userStore = useUserStore();
 const router = useRouter();
 const loginForms = ref();
+const route = useRoute();
 
 const loading = ref(false)
 const loginForm = ref({
@@ -45,7 +47,12 @@ const login = async () => {
     loading.value = true;
     try {
         await userStore.userLogin(loginForm.value);
-        router.push('/');
+        const redirect = route.query.redirect as string;
+        if (redirect) {
+            router.push(redirect);
+        } else {
+            router.push('/');
+        }
         ElNotification.success({
             title: `Hi，${getTime()}`,
             message: '欢迎回来',
