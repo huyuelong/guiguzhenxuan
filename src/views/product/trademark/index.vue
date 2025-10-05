@@ -101,14 +101,18 @@ const handleSizeChange = (val: number) => {
 };
 
 // 添加品牌
-const addTrademark = () => {
+const addTrademark = async () => {
+    //对话框显示
     dialogFormVisible.value = true;
-    // 清空之前的数据
+    //清空收集数据
     trademarkParams.value = {
+        id: 0,
         tmName: '',
         logoUrl: ''
     };
-};
+    await nextTick();
+    formRef.value?.clearValidate(['tmName', 'logoUrl']);
+}
 
 // 修改品牌
 const updateTrademark = (row: TradeMark) => {
@@ -132,7 +136,7 @@ const confirm = async () => {
     // 在你发请求之前,要对于整个表单进行校验
     // 调用这个方法进行全部表单相校验,如果校验全部通过，在执行后面的语法
     await formRef.value?.validate();
-    let result: any = await reqAddOrUpdateTrademark(trademarkParams.value);
+    const result = await reqAddOrUpdateTrademark(trademarkParams.value);
     //添加|修改已有品牌
     if (result.code == 200) {
         dialogFormVisible.value = false;
@@ -181,7 +185,6 @@ const handleAvatarSuccess: UploadProps['onSuccess'] = (response, uploadFile) => 
     trademarkParams.value.logoUrl = response.data;
     //图片上传成功,清除掉对应图片校验结果
     formRef.value?.clearValidate('logoUrl');
-
 }
 
 // 品牌自定义校验规则方法
