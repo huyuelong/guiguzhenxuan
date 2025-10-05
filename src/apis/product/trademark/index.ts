@@ -1,6 +1,6 @@
 //书写品牌管理模块接口
 import request from "@/utils/request";
-import type { TradeMarkResponseData, TradeMark } from './type'
+import type { TradeMarkResponseData, TradeMark } from './type';
 //品牌管理模块接口地址
 enum API {
     //获取已有品牌接口
@@ -28,4 +28,4 @@ export const reqAddOrUpdateTrademark = (data: TradeMark) => {
 }
 
 //删除某一个已有品牌的数据
-export const reqDeleteTrademark = (id: number) => request.delete<any, any>(API.DELETE_URL + id)
+export const reqDeleteTrademark = (id: number) => request.delete<any, any>(API.DELETE_URL + id);

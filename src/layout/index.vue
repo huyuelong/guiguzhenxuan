@@ -32,7 +32,7 @@ import Main from './main/index.vue';
 import Tabbar from './tabbar/index.vue';
 import { useRoute } from 'vue-router';
 import useLayoutSettingStore from '@/store/modules/setting';
-import { computed, defineOptions } from 'vue';
+import { computed } from 'vue';
 
 defineOptions({
     name: 'Layout'

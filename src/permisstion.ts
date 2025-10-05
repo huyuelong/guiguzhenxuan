@@ -17,39 +17,38 @@ router.beforeEach(async (to, from, next) => {
 
     const token = userStore.token;
     const username = userStore.username;
+
     if (token) {
-        //已经登录成功
+        // 已登录还去登录页 → 回首页
         if (to.path === '/login') {
-            //如果已经登录还想去登录页，跳转到首页
             next('/');
-        } else {
-            //去的不是登录页，有token，放行
-            next();
-            if (username) {
-                next();
-            } else { 
-                try {
-                    await userStore.userInfo();
-                    next();
-                } catch (error) {
-                    await userStore.userLogout();
-                    next(`/login?redirect=${to.path}`);
-                }
+            return;
+        }
+
+        // 已登录但没获取用户信息
+        if (!username) {
+            try {
+                await userStore.userInfo();
+                next(); // 成功后放行
+            } catch (error) {
+                // token 过期或用户信息获取失败 → 退出重新登录
+                await userStore.userLogout();
+                next(`/login?redirect=${to.path}`);
             }
+        } else {
+            next(); // ✅ 用户信息已有，直接放行
         }
     } else {
-        //未登录
+        // 未登录
         if (to.path === '/login') {
-            //去登录页，放行
-            next();
+            next(); // 允许去登录页
         } else {
-            //去的不是登录页，跳转到登录页
-            next(`/login?redirect=${to.path}`);
+            next(`/login?redirect=${to.path}`); // 跳转登录页
         }
     }
 });
 
 // 全局后置守卫
-router.afterEach((to, from) => {
+router.afterEach(() => {
     nprogress.done();
 });
