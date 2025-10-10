@@ -26,7 +26,7 @@ defineOptions({
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
-    background-image: linear-gradient(to right, #ffffff, #bfdbfe, #e9d5ff);
+    // background-image: linear-gradient(to right, #ffffff, #bfdbfe, #e9d5ff);
 
     .tabbar_left,
     .tabbar_right {
